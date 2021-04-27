@@ -457,75 +457,51 @@
 		<!-- Main Result Here -->
                 <center><h4>Result One: Multiple Frames Averaging with Optical Flow Motion Compensation</h4></center>
 		  
-		<table align="center"><td width="1000px"><span style="font-size:18px"><p>
-	  		In this part of the project, we explored video denoising using motion compensated multi-frame averaging method on video corrupted by four different noise models: Gaussian noise with mean = 0 and SD = 50, 100, and 150. Poisson noise 
-			with assumed maximum of 10 photons in the foreground (tumor) and 4 photons in the background.
-	  	</p></span></td>
-  		</table>
-		
 		<table align="center"><td width="1000px"><span style="font-size:18px">
-			<p>Approach one contais four main steps:</p>
+	  		<p> In this part of the project, we explored video denoising using motion compensated multi-frame averaging method on video corrupted by four different noise models: Gaussian noise with mean = 0 and SD = 50, 100, and 150. Poisson noise 
+			    with assumed maximum of 10 photons in the foreground (tumor) and 4 photons in the background.
+	  	        </p>
 			
-			<p><b><u>1. Denoising a still video.</u></b> We tested the validity of noise removal using multi-frame averaging on a video of a still object. The video has 25 frames, all frames are the same so they can be added up directly without 
-				alignment. Random gaussian noise (mean = 0, sd = 1) is applied to each frame and then denoised using the multi-frame averaging method. As shown in figure 1, the noise is removed in the final frame.
-			</p>
 			<table align="center" width="600px"><tbody><tr>
 				<td align="center" width="600px">
-					<a href=""><img class="rounded" src="./image/still frames.jpg" width="700px"></a><br>
+					<a href=""><img class="rounded" src="./image/optical flow.gif" width="500px"></a><br>
 					<span style="font-size:16px"></span>
 			        </td>
-				<td align="center" width="600px">
-					<a href=""><img class="rounded" src="./image/still frames_denoising effect.jpg" width="300px"></a><br>
-					<span style="font-size:16px"></span>
-			        </td>
-			</tr></tbody>
-  		        </table><br>
 				
-			<p><b><u>2. Denoising a video with forward optical flow motion compensation.</u></b> We move on to denoise a normal video where the objects in the video are moving. To denoise dark frame n of a video, the first step is to find the 
-				motion trajectory between each two consecutive dark frames from frame 1 to frame n by calculating optical flow between each two consecutive white-light frames captured by the CMOS camera because the white-light frames are 
-				noise-less, and object motions are the same in white light frames and dark frames.
-			</p>
-			<p> Next, dark frames 1 to n – 1 are warped based on the motion trajectory to get aligned with dark frame n. The aligned dark frames are then summed up and averaged to get the final denoised dark frame n. See figure 3. The video 
-				has a total of 1827 frames so n < 1827. Because object motions are determined based on video being played forward, so we can call this approach denoising using the forward flow.
-			</p>
-			<table align="center" width="600px"><tbody><tr>
 				<td align="center" width="600px">
-					<a href=""><img class="rounded" src="./image/optical flow_forward.jpg" width="700px"></a><br>
+					<a href=""><img class="rounded" src="./image/optical flow_Possion.gif" width="500px"></a><br>
 					<span style="font-size:16px"></span>
 			        </td>
 			</tr></tbody>
   		        </table>
-			<p> However, because the tweezers in the video acts like a moving occluder, optical flow fails on the pixels that were not occluded in frame n – 2 but got occluded in frame n – 1, or pixels that were occluded in frame n – 2 but not 
-				occluded anymore in frame n – 1 (i.e., a sudden change of brightness). These pixels cannot be properly aligned and the averaging at these locations must be reset. Therefore, these locations in the image become noisy when the 
-				noisy dark frame n gets added in. We propose a backward flow method to overcome the occlusion issue presented in optical flow.
+			
+			<p> From the output denoised video frames and PSNR plots, we observed significant denoising effect using the motion compensated multi-frame averaging method on both Gaussian and Poisson noise corrupted florescent videos. Also, Both the output 
+				denoised video and the PSNR plots show that combining the forward flow and backward flow is capable of removing some of the remaining noise from failed alignments due to optical flow failures (presence of occlusion, sudden change in brightness, etc.), 
+				and further improve the output video quality. The PSNR plot of the video denoised by combined forward and backward flow method stays constantly above that denoised by the forward flow only method.	
 			</p>
+			
+			<table align="center" width="600px"><tbody><tr>
+				<td align="center" width="600px">
+					<a href=""><img class="rounded" src="./image/result_optical flow_Gaussian.jpg" width="700px"></a><br>
+					<span style="font-size:16px"></span>
+			        </td>
+			</tr></tbody>
+  		        </table>
+			
 			<br>
-				
-		        <p><b><u>3. Denoising a video with backward optical flow motion compensation.</u></b> Using the same analogy as the forward flow, we can also denoise dark frame n by aligning and averaging dark frame 1827 (the last frame of the video) 
-				to dark frame n (i.e., playing the video backwards). See figure 5. Because object motions are determined based on video being played backward, so we can call this approach denoising using the backward flow.
-			</p>
+			
 			<table align="center" width="600px"><tbody><tr>
 				<td align="center" width="600px">
-					<a href=""><img class="rounded" src="./image/optical flow_backward.jpg" width="700px"></a><br>
+					<a href=""><img class="rounded" src="./image/result_optical flow_Possion.jpg" width="700px"></a><br>
 					<span style="font-size:16px"></span>
 			        </td>
 			</tr></tbody>
-  		        </table><br>
-				
-			<p><b><u>4. Denoising a video with combined forward flow and backward flow.</u></b> We can see that although the backward flow also failed to remove all the noise in dark frame n, comparing the two denoised dark frame n from forward and 
-				backward flow, the noise does not necessarily appear at the same locations. This is because pixels of frame n whose optical flow failed in frame n -1 of the forward flow does not necessarily fail in frame n + 1 of the backward flow. 
-				Therefore, we can further lower the noise level in dark frame n by combining the results from forward flow and backward flow. We are still working on the implementation of this part.
-			</p>
-			<table align="center" width="600px"><tbody><tr>
-				<td align="center" width="600px">
-					<a href=""><img class="rounded" src="./image/optical flow_forward_backward.jpg" width="700px"></a><br>
-					<span style="font-size:16px"></span>
-			        </td>
-			</tr></tbody>
-  		        </table><br>
+  		        </table>
 			
 			</span></td>
   		</table>
+		
+	
 		  
 		  
 		  
@@ -724,45 +700,11 @@
 		</table> 
 		<hr> -->
 
-  		<table align="center" width="1100px">
-  			<tbody><tr><td width="400px">
-	  			<center><h2>Acknowledgements</h2></center><span style="font-size:15px"><p>
-				This work was funded by DARPA through the DARPA REVEAL project (HR0011-16-C0025), the NASA NIAC program, and the AFOSR through the Young Investigator Program (FA9550-15-1-0208), and the DURIP program (FA9550-18-1-0409).
-			</p></span></td></tr></tbody>
-		</table>
+  	
 
-		<br><br>
-
-  		<table align="center" width="1100px">
-		  	<tbody><tr><td width="400px"><left>
-			  	<center><h2>Related Work</h2></center>
-	  			<span style="font-size:20px"><left><b> Non-Line-of-Sight Imaging:</b> </left></span><br>
-				
-				Non-Line-of-Sight Imaging using Phasor Field Virtual Wave Optics, <strong><i>Nature</i></strong>. <a href="https://biostat.wisc.edu/~compoptics/phasornlos19/phasor_nlos_19.html" target="_blank"> [Website]</a><br>
-				Phasor Field Diffraction Based Reconstruction for Fast Non-Line-of-Sight Imaging Systems, <strong><i>Nature Communications</i></strong>. <a href="https://biostat.wisc.edu/~compoptics/phasornlos20/fastnlos.html" target="_blank"> [Website]</a><br>
-				The role of Wigner Distribution Function in Non-Line-of-Sight Imaging, <strong><i>ICCP</i></strong>. <a href="https://xiaochunliu.github.io/nloswdf/" target="_blank"> [Website]</a><br>
-				Analysis of Feature Visibility in Non-Line-of-Sight Measurements, <strong><i>CVPR</i></strong>. <a href="https://biostat.wisc.edu/~compoptics/Analysis%20of%20Feature%20Visibility%20in%20Non-Line-of-Sight%20Measurements/Analysis%20of%20Feature%20Visibility%20in%20Non-Line-of-Sight%20Measurements_seb.html" target="_blank"> [Website]</a><br>
-				On the effect of BRDFs on Phasor Field NLOS imaging, <strong><i>ICASSP</i></strong>. <a href="https://xiaochunliu.github.io/" target="_blank"> [Website]</a><br>
-				A dataset for benchmarking time-resolved non-line-of-sight imaging, <strong><i>SIGGRAPH</i></strong>. <a href="http://graphics.unizar.es/nlos_dataset.html" target="_blank"> [Website]</a><br>
-				Phasor field waves: A Huygens-like light transport model for non-line-of-sight imaging applications, <strong><i>Optics Express</i></strong>. <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-27-20-29380" target="_blank"> [Paper]</a><br>
-				Paraxial theory of phasor-field imaging, <strong><i>Optics Express</i></strong>. <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-27-13-18016" target="_blank"> [Paper]</a><br>
-				Phasor field waves: a mathematical treatment, <strong><i>Optics Express</i></strong>. <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-27-20-27500" target="_blank"> [Paper]</a><br>
-				Non-line-of-sight-imaging using dynamic relay surfaces, <strong><i>Optics Express</i></strong>. <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-28-4-5331" target="_blank"> [Paper]</a><br>
-
-			</left></td></tr></tbody>
-		</table> 
+  	
 
 		<!-- Cite back to author  -->
-        <br>
-        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
-          	<tr><td><br><p align="right" style="color:Gray;"><font size="2">
-            	Project Template from <a href="https://richzhang.github.io/colorization/" target="_blank">here</a></font></p> <br></td>
-        	</tr>
-        	<tr>
-        		<p align="right" style="color:Gray;">
-          		<a href="https://info.flagcounter.com/OOlb"><img src="https://s11.flagcounter.com/count2/OOlb/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-        	</tr>
-      	</table>
 
 
 </body></html>
