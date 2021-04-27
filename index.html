@@ -310,12 +310,6 @@
 	  		  			</center>
   		  	  		</td>
 
-  		  	  		<td align="center" width="275px">
-	  					<center>
-	  						<span style="font-size:20px"><a href = index.html#Implementation>Implementation</a></span>
-	  		  			</center>
-  		  	  		</td>
-
 					<td align="center" width="240px">
 						<center>
 							<span style="font-size:20px"><a href = index.html#Results>Results</a></span>
@@ -412,7 +406,12 @@
 					<span style="font-size:16px"></span>
 			        </td>
 			</tr></tbody>
-  		        </table><br>
+  		        </table>
+			<p> However, because the tweezers in the video acts like a moving occluder, optical flow fails on the pixels that were not occluded in frame n – 2 but got occluded in frame n – 1, or pixels that were occluded in frame n – 2 but not 
+				occluded anymore in frame n – 1 (i.e., a sudden change of brightness). These pixels cannot be properly aligned and the averaging at these locations must be reset. Therefore, these locations in the image become noisy when the 
+				noisy dark frame n gets added in. We propose a backward flow method to overcome the occlusion issue presented in optical flow.
+			</p>
+			<br>
 				
 		        <p><b><u>3. Denoising a video with backward optical flow motion compensation.</u></b> Using the same analogy as the forward flow, we can also denoise dark frame n by aligning and averaging dark frame 1827 (the last frame of the video) 
 				to dark frame n (i.e., playing the video backwards). See figure 5. Because object motions are determined based on video being played backward, so we can call this approach denoising using the backward flow.
@@ -446,17 +445,111 @@
 		  
 		<center><h4>Approach Two: Deep Neural Network based Image Segmentation</h4></center>
 		<br>
-	   </div>  
+	  </div>  
 	  
 
 		<br><hr>
 
-	  <div id = "Implementation">
+	  <div id = "Results">
 		  
- 		<center><h2>Method and Result</h2></center>
+ 		<center><h2>Results</h2></center>
 
 		<!-- Main Result Here -->
-
+                <center><h4>Result One: Multiple Frames Averaging with Optical Flow Motion Compensation</h4></center>
+		  
+		<table align="center"><td width="1000px"><span style="font-size:18px"><p>
+	  		In this part of the project, we explored video denoising using motion compensated multi-frame averaging method on video corrupted by four different noise models: Gaussian noise with mean = 0 and SD = 50, 100, and 150. Poisson noise 
+			with assumed maximum of 10 photons in the foreground (tumor) and 4 photons in the background.
+	  	</p></span></td>
+  		</table>
+		
+		<table align="center"><td width="1000px"><span style="font-size:18px">
+			<p>Approach one contais four main steps:</p>
+			
+			<p><b><u>1. Denoising a still video.</u></b> We tested the validity of noise removal using multi-frame averaging on a video of a still object. The video has 25 frames, all frames are the same so they can be added up directly without 
+				alignment. Random gaussian noise (mean = 0, sd = 1) is applied to each frame and then denoised using the multi-frame averaging method. As shown in figure 1, the noise is removed in the final frame.
+			</p>
+			<table align="center" width="600px"><tbody><tr>
+				<td align="center" width="600px">
+					<a href=""><img class="rounded" src="./image/still frames.jpg" width="700px"></a><br>
+					<span style="font-size:16px"></span>
+			        </td>
+				<td align="center" width="600px">
+					<a href=""><img class="rounded" src="./image/still frames_denoising effect.jpg" width="300px"></a><br>
+					<span style="font-size:16px"></span>
+			        </td>
+			</tr></tbody>
+  		        </table><br>
+				
+			<p><b><u>2. Denoising a video with forward optical flow motion compensation.</u></b> We move on to denoise a normal video where the objects in the video are moving. To denoise dark frame n of a video, the first step is to find the 
+				motion trajectory between each two consecutive dark frames from frame 1 to frame n by calculating optical flow between each two consecutive white-light frames captured by the CMOS camera because the white-light frames are 
+				noise-less, and object motions are the same in white light frames and dark frames.
+			</p>
+			<p> Next, dark frames 1 to n – 1 are warped based on the motion trajectory to get aligned with dark frame n. The aligned dark frames are then summed up and averaged to get the final denoised dark frame n. See figure 3. The video 
+				has a total of 1827 frames so n < 1827. Because object motions are determined based on video being played forward, so we can call this approach denoising using the forward flow.
+			</p>
+			<table align="center" width="600px"><tbody><tr>
+				<td align="center" width="600px">
+					<a href=""><img class="rounded" src="./image/optical flow_forward.jpg" width="700px"></a><br>
+					<span style="font-size:16px"></span>
+			        </td>
+			</tr></tbody>
+  		        </table>
+			<p> However, because the tweezers in the video acts like a moving occluder, optical flow fails on the pixels that were not occluded in frame n – 2 but got occluded in frame n – 1, or pixels that were occluded in frame n – 2 but not 
+				occluded anymore in frame n – 1 (i.e., a sudden change of brightness). These pixels cannot be properly aligned and the averaging at these locations must be reset. Therefore, these locations in the image become noisy when the 
+				noisy dark frame n gets added in. We propose a backward flow method to overcome the occlusion issue presented in optical flow.
+			</p>
+			<br>
+				
+		        <p><b><u>3. Denoising a video with backward optical flow motion compensation.</u></b> Using the same analogy as the forward flow, we can also denoise dark frame n by aligning and averaging dark frame 1827 (the last frame of the video) 
+				to dark frame n (i.e., playing the video backwards). See figure 5. Because object motions are determined based on video being played backward, so we can call this approach denoising using the backward flow.
+			</p>
+			<table align="center" width="600px"><tbody><tr>
+				<td align="center" width="600px">
+					<a href=""><img class="rounded" src="./image/optical flow_backward.jpg" width="700px"></a><br>
+					<span style="font-size:16px"></span>
+			        </td>
+			</tr></tbody>
+  		        </table><br>
+				
+			<p><b><u>4. Denoising a video with combined forward flow and backward flow.</u></b> We can see that although the backward flow also failed to remove all the noise in dark frame n, comparing the two denoised dark frame n from forward and 
+				backward flow, the noise does not necessarily appear at the same locations. This is because pixels of frame n whose optical flow failed in frame n -1 of the forward flow does not necessarily fail in frame n + 1 of the backward flow. 
+				Therefore, we can further lower the noise level in dark frame n by combining the results from forward flow and backward flow. We are still working on the implementation of this part.
+			</p>
+			<table align="center" width="600px"><tbody><tr>
+				<td align="center" width="600px">
+					<a href=""><img class="rounded" src="./image/optical flow_forward_backward.jpg" width="700px"></a><br>
+					<span style="font-size:16px"></span>
+			        </td>
+			</tr></tbody>
+  		        </table><br>
+			
+			</span></td>
+  		</table>
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 	  	<table align="center" width="600px">
   		    <tbody><tr>
               <td align="center" width="600px">
