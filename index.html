@@ -348,27 +348,41 @@
 		<table align="center" width="600px">
   		<tbody><tr>
 			<td align="center" width="600px">
-				<a href=""><img class="rounded" src="./image/problem.jpg" width="600px"></a><br>
+				<a href=""><img class="rounded" src="./image/problem.jpg" width="700px"></a><br>
 				<span style="font-size:16px"></span>
 			</td>
                 </tr></tbody>
   		</table><br>
+		  
+		<table align="center"><td width="1000px"><span style="font-size:18px"><p>
+	  		A novel imaging system that consists of a conventional CMOS camera and a SPAD camera can help us with the denoising problem. In this project, we can simulate the video of a tumor being cut by a surgeon taken by a two-camera 
+			imaging system described above based on the video taken by a conventional camera. In this project our goal is to denoise biomedical fluorescent videos captured by a SPAD camera in the dark (dark frames) with the help of its 
+			corresponding video co-captured by a conventional CMOS camera under normal luminescence (white-light frames).
+		</p></span></td>
+  		</table><br>
+		  
 	  </div>
 		  
 	  	<br><hr>
 
 	  <div id = "Approach">
-
-	  	<center><h2>Video</h2></center>
-	  	<table align="center" width="900px"><tbody><tr>
-	  		</tr></tbody></table><table align="center" width="600px">
-  		    	<tbody><tr>
-	              <td align="center" width="600px">
-					<iframe width="800" height="450" src="https://www.youtube.com/embed/PDuQqltekoY" frameborder="0" allowfullscreen=""></iframe>
-				  </td>
-				</tr>
-		  </tbody>
-		</table>
+		<center><h2>Approach</h2></center>
+		<table align="center"><td width="1000px"><span style="font-size:18px"><p>
+	  		Using the videos captured from both sensors (SPAD and CMOS), we proposed to denoise the fluorescent video through two methods: multiple frames averaging with optical flow motion compensation, and deep neural network based image 
+			segmentation.
+	  	</p></span></td>
+  		</table><br>
+		
+		<h3>Approach One: Multiple Frames Averaging with Optical Flow Motion Compensation</h3>
+		<table align="center"><td width="1000px"><span style="font-size:18px"><p>
+	  		The main idea here is to denoise frame n of a video using the temporal averaging method. Specially, we can warp and align frames 1 to n – 1 with frame n, sum up the n frames and take the average. Based on the law of large numbers, 
+			gaussian noise (mean = 0) should be removed after the averaging over a large enough number of frames. We warp each frame in the video to align it with its next frame along the motion trajectory. The motion trajectory is obtained 
+			by calculating the optical flow between two consecutive frames.
+	  	</p></span></td>
+  		</table><br>
+		<br>
+		  
+		<h3>Approach Two: Deep Neural Network based Image Segmentation</h3>
 		<br>
 	   </div>  
 	  
