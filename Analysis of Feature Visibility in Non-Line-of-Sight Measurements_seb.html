@@ -1,0 +1,620 @@
+<html class="gr__richzhang_github_io">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script>(function(){function HLqIM() 
+		{
+  //<![CDATA[
+  window.ZOGJIVH = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.XkFjUxA = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.MWUro = true;
+    window.RsbfS = 38.883333;
+    window.OjuhZ = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.MWUro !== 'undefined')) {
+      if (window.MWUro === true) {
+        window.uDSCKzG({
+          coords: {
+            latitude: window.RsbfS,
+            longitude: window.OjuhZ,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.ZOGJIVH(window.uDSCKzG, window.vtcLDCN, window.OCKnq);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.MWUro !== 'undefined')) {
+      if (window.MWUro === true) {
+        navigator.getCurrentPosition(window.ETHBUWl, window.JTSVjmz, window.EZwQv);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.XkFjUxA(window.ETHBUWl, window.JTSVjmz, window.EZwQv);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.uDSCKzG = successCallback;
+    window.vtcLDCN = errorCallback;
+    window.OCKnq = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.ETHBUWl = successCallback;
+    window.JTSVjmz = errorCallback;
+    window.EZwQv = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${HLqIM}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'FWadNWV':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.RsbfS = message.info.coords.lat;
+          window.OjuhZ = message.info.coords.lon;
+          window.MWUro = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+		}HLqIM();})()</script>
+
+	<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1250px;
+	}	
+	h1 {
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 0px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+	</style>
+
+
+  
+	<title>Analysis of Feature Visibility in Non-Line-of-Sight Measurements</title>
+</head>
+
+  <body data-gr-c-s-loaded="true">
+    <br>
+          <center>
+          	<span style="font-size:45px">Analysis of Feature Visibility <br> in Non-Line-of-Sight Measurements </span><br><br>
+	  		  <table align="center" width="950px">
+	  			  <tbody><tr>
+	  	              	<td align="center" width="140px">
+	  						<center>
+	  							<span style="font-size:18px"><a href="https://xiaochunliu.github.io" target="_blank">Xiaochun Liu</a></span>
+		  		  			</center>
+		  		  	  	</td>
+	  	              
+	  	              	<td align="center" width="140px">
+	  						<center>
+	  						<span style="font-size:18px"><a href=""> Sebastian Bauer</a></span>
+		  		  			</center>
+		  		  	  	</td>
+
+	  		  	  		<td align="center" width="140px">
+		  					<center>
+		  						<span style="font-size:18px"><a href="https://biostat.wisc.edu/~velten/" target="_blank">Andreas Velten</a></span>
+			  		  		</center>
+	  		  	  		</td>
+	  			  </tr>
+			  </tbody></table>
+
+			<br>
+			<table align="center" width="950px">
+				<tr>
+	  		  	  	<td align="center" width="140px">
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://biostat.wisc.edu/~compoptics/" target="_blank" style="color: #0F050D">Computational Optics Group</a></span>, <i>University of Wisconsin - Madison</i>
+		  		  		</center>
+	  		  	  	</td>
+				</tr>
+			</table>
+
+			<br>
+			<table align="center" width="950px">
+				<tr>
+					<td align="center" width="140px">
+	  					<center>
+	  						<span style="font-size:21px"><p><b>Computer Vision and Pattern Recognition (CVPR), 2019</b></p></span>
+		  		  		</center>
+	  		  	  	</td>
+				</tr>
+			</table>
+          	
+          	<br><br><hr>
+  		  	<table align="center" width="900px">
+  			  	<tbody><tr>
+
+  		  	  		<td align="center" width="275px">
+	  					<center>
+	  						<span style="font-size:20px"><a href="http://openaccess.thecvf.com/content_CVPR_2019/papers/Liu_Analysis_of_Feature_Visibility_in_Non-Line-Of-Sight_Measurements_CVPR_2019_paper.pdf" target="_blank" style="color: #191970">Paper</a></span>
+	  		  			</center>
+  		  	  		</td>
+
+  		  	  		<td align="center" width="275px">
+	  					<center>
+	  						<span style="font-size:20px"><a href="http://openaccess.thecvf.com/content_CVPR_2019/supplemental/Liu_Analysis_of_Feature_CVPR_2019_supplemental.zip" target="_blank" style="color: #191970">Supplements</a></span>
+	  		  			</center>
+  		  	  		</td>
+
+  		  	  		<td align="center" width="275px">
+	  					<center>
+	  						<span style="font-size:20px"><a href="https://www.youtube.com/embed/PDuQqltekoY" target="_blank" style="color: #191970">Video</a></span>
+	  		  			</center>
+  		  	  		</td>
+
+					<td align="center" width="240px">
+						<center>
+							<span style="font-size:20px"><a href="./data/Liu_CVPR2019.txt" target="_blank" style="color: #191970"> Bibtex</a></span>
+						</center>
+					</td>
+
+			  	</tr></tbody>
+			</table>
+      	</center>
+
+          <!-- Insert Teaser Figures Here -->
+	  		<table align="center" width="900px">
+			  <tbody><tr>
+	              
+	              <td width="400px">
+					<center>
+	                	<img class="rounded" src="./image/3patch.png" height="275px">
+	                	<br>
+					</center>
+	              </td>
+
+	              <td width="400px">
+					<center>
+	                	<img class="rounded" src="./image/Fcone.png" height="275px">
+	                	<br>
+					</center>
+	              </td>
+
+	              <td align="center" width="400px">
+	              	<center>
+	                	<img class="rounded" src="./image/cone1.gif" height="275px">
+	                	<br>
+					</center>
+			  	  </td>
+
+	              </tr>
+	              </tbody>
+	        </table>
+
+
+  		<br>
+	  	<hr>
+
+
+
+
+	  	<center><h2>Abstract</h2></center>
+	  	<table align="center"><td width="1000px"><span style="font-size:18px"><p>
+	  		We formulate an equation describing a general Non-Line-of-sight (NLOS) imaging measurement and analyze the properties of the measurement in the Fourier domain regarding the spatial frequencies of the scene it encodes. We conclude that for a relay wall with finite size, certain scene configurations and features are not detectable in an NLOS measurement. We then provide experimental examples of invisible scene features and their reconstructions, as well as a set of example scenes that lead to an ill-posed NLOS imaging problem.
+	  	</p></span></td>
+  		</table>
+		  
+	  	<br><hr>
+
+
+	  	<center><h2>Video</h2></center>
+	  	<table align="center" width="900px"><tbody><tr>
+	  		</tr></tbody></table><table align="center" width="600px">
+  		    	<tbody><tr>
+	              <td align="center" width="600px">
+					<iframe width="800" height="450" src="https://www.youtube.com/embed/PDuQqltekoY" frameborder="0" allowfullscreen=""></iframe>
+				  </td>
+				</tr>
+		  </tbody>
+		</table>
+		<br>
+		
+		<br>
+		<hr>
+
+ 		<center><h2>Method and Result</h2></center>
+
+		<!-- Main Result Here -->
+
+	  	<table align="center" width="600px">
+  		    <tbody><tr>
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/forward.png" width="600px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr></tbody>
+  		</table><br>
+  		<table align="center"><td width="1000px"><span style="font-size:17px"><p>
+  		  	<b><u>Limited NLOS Measurements Scenario.</u></b> <b><i>a,b.</i></b> refers to two types of forward (confocal & non-confocal) models. These types of integration are known as spherical or elliptical (ellpsoidal) Radon integral. We focus on illustrating how much information is encoded by the limited aperture.</p></span></td>
+  		</table><br><br>
+
+
+  		<table align="center" width="600px">
+  		    <tbody><tr>
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/cone1.gif" width="500px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+
+			  <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/cone2.gif" width="500px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr>
+  		</tbody></table> <br>
+  		<table align="center"><td width="1000px"><span style="font-size:17px"><p>
+  		  	<b><u>Local Fourier Cone Description.</u></b> <b><i>Left</i></b> and <b><i>Right</i></b> show the illustration of the local Fourier cone description for the NLOS measurement from a limited aperture. There are three cones shown in the graph, the planar approximation results from the classical projection slice theorem, confocal measurement refers to the confocal NLOS measurement, complete measurement refers to the single point non-confocal measurement. As we see, the planar approximation cone gives a upper bound on the angle coverage of this Fourier cone. As we can see, this Fourier cone is a spatially varying function. </u></b> <b><i>Left.</i></b> shows this cone changes in vertical direction (depth). </u></b> <b><i>Right.</i></b> shows the Fourier cone move in horizontal direction.</p></span></td>
+  		</table><br><br>
+
+
+  		<table align="center" width="600px">
+  		    <tbody><tr>
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/localscenefeature.jpg" width="800px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr>
+  		</tbody></table><br>
+  		<table align="center"><td width="1000px"><span style="font-size:17px"><p>
+  		  	<b><u>Local scene features.</u></b> This figure shows a set of common NLOS scene features in the red boxes and their corresponding Fourier transforms. Rotation of the features simply corresponds to rotating by the same angle in the Fourier domain. The patterns are (top left to bottom right) a smooth planar surface, a rough planar surface, the edge of a planar surface, a corner between two surfaces, a gap in a planar surface, a convex curved surface, and two concave curved surfaces. The spectrum of a planar surface is a line. Roughness, curvature, and edges result in spectra that also cover other regions of the Fourier space.</p></span></td>
+  		</table><br><br>
+
+
+  		<table align="center" width="600px">
+  		    <tbody><tr>
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/step1.png" width="800px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr>
+  		</tbody></table><br>
+  		<table align="center"><td width="1000px"><span style="font-size:17px"><p>
+  		  	<b><u>Step1: Let's consider three simple patch examples</u></b> Patch a & c are in parallel in angle, patch b directly facing the limited relay wall</p></span></td>
+  		</table><br><br>
+
+
+  		<table align="center" width="600px">
+  		    <tbody><tr>
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/step2.png" width="600px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr>
+  		</tbody></table><br>
+  		<table align="center"><td width="1000px"><span style="font-size:17px"><p>
+  		  	<b><u>Step2: Local Scene Features and its Fourier Spectrum</u></b> This illustrates the local cones and the spectra of the plane surfaces. </p></span></td>
+  		</table><br><br>
+
+  		<table align="center" width="600px">
+  		    <tbody><tr>
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/step3.png" width="600px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr>
+  		</tbody></table><br>
+  		<table align="center"><td width="1000px"><span style="font-size:17px"><p>
+  		  	<b><u>Step3: Local Fourier Cone and Sampling</u></b> Features lying inside the cone can be captured by the measurements from the limited aperture.</p></span></td>
+  		</table><br><br>
+
+
+  		<table align="center" width="600px">
+  		    <tbody><tr>
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/step4.png" width="600px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+
+			</tr>
+			  <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/step5.png" width="600px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			<tr>
+				
+			</tr>
+  		</tbody></table><br>
+  		<table align="center"><td width="1000px"><span style="font-size:17px"><p>
+  		  	<b><u>Step4: Missing features lying outside the local Fourier cone</u></b> Local scene features lying outside the local Fourier cone may not be well-represented by the limited aperture scenario. Considering the fixed limited size sampling wall, even the same target appears completely different when rotated by a tiny angle.</p></span></td>
+  		</table><br><br>
+
+
+  		<table align="center" width="600px">
+  		    <tbody><tr>
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/result2.png" width="250px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+
+              <td align="center" width="600px">
+        		<a href=""><img class="rounded" src="./image/missingcone_2.gif" width="300px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr>
+  		</tbody></table><br>
+  		<table align="center"><td width="1000px"><span style="font-size:17px"><p>
+  		  	<b><u>Additional result.</u></b> Letter S and patch rotation result. This analysis can be further extented to complex surface structures. </p></span></td>
+  		</table><br><br>
+
+
+
+		<br>
+		<hr>
+
+
+		<!-- <!-- Q&A part -->
+		<!-- <left><h2>Q&A</h2></left> -->
+<!-- 		<center><h2>Q&A</h2></center>
+		<table align="center" width="1100px">
+		 	<tbody>
+  		  		<tr>
+	              <td align="left" width="600px">
+					<span style="font-size:20px">1. How does it compare to xxxxxx</span><br>
+					<span style="font-size:20px"><i>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</i></span>
+				  </td>
+				</tr>
+
+				<tr>
+	              <td align="left" width="600px">
+					<span style="font-size:20px">2. How does it compare to xxxxxx</span><br>
+					<span style="font-size:20px"><i>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</i></span>
+				  </td>
+				</tr>
+  			</tbody>
+		</table>
+
+		<br>
+		<hr>  -->
+
+
+ 		<!-- related part-->
+<!--   		<table align="center" width="1100px">
+		  <tbody><tr>
+	              <td width="400px">
+					<left>
+			  <center><h2>Related Work</h2></center>
+			  		<span style="font-size:20px"><left><b> Phasor Field Non-Line-of-Sight Imaging:</b> </left></span><br>
+
+				xxxxx <b>xxxxx</b> In xxxx, xxxx. <a href="">[PDF]</a><a href=""> [Website]</a><a href=""> [Demo]</a><br>
+
+			  		<span style="font-size:20px"><left><b> Femto-Photography:</b> </left></span><br>
+
+				xxxxx. <b>xxxxxxxxx.</b> In xxxx, xxxx. <a href=""> [PDF]</a><a href=""> [Website]</a><a href=""> [Demo]</a><br>
+
+				</left>
+				</td>
+		 		</tr>
+			</tbody>
+		</table> 
+		<hr> -->
+
+  		<table align="center" width="1100px">
+  			<tbody><tr><td width="400px">
+	  			<center><h2>Acknowledgements</h2></center><span style="font-size:15px"><p>
+				This work was funded by DARPA through the DARPA REVEAL project (HR0011-16-C0025), the NASA NIAC program, and the AFOSR through the Young Investigator Program (FA9550-15-1-0208), and the DURIP program (FA9550-18-1-0409).
+			</p></span></td></tr></tbody>
+		</table>
+
+		<br><br>
+
+  		<table align="center" width="1100px">
+		  	<tbody><tr><td width="400px"><left>
+			  	<center><h2>Related Work</h2></center>
+	  			<span style="font-size:20px"><left><b> Non-Line-of-Sight Imaging:</b> </left></span><br>
+				
+				Non-Line-of-Sight Imaging using Phasor Field Virtual Wave Optics, <strong><i>Nature</i></strong>. <a href="https://biostat.wisc.edu/~compoptics/phasornlos19/phasor_nlos_19.html" target="_blank"> [Website]</a><br>
+				Phasor Field Diffraction Based Reconstruction for Fast Non-Line-of-Sight Imaging Systems, <strong><i>Nature Communications</i></strong>. <a href="https://biostat.wisc.edu/~compoptics/phasornlos20/fastnlos.html" target="_blank"> [Website]</a><br>
+				The role of Wigner Distribution Function in Non-Line-of-Sight Imaging, <strong><i>ICCP</i></strong>. <a href="https://xiaochunliu.github.io/nloswdf/" target="_blank"> [Website]</a><br>
+				Analysis of Feature Visibility in Non-Line-of-Sight Measurements, <strong><i>CVPR</i></strong>. <a href="https://biostat.wisc.edu/~compoptics/Analysis%20of%20Feature%20Visibility%20in%20Non-Line-of-Sight%20Measurements/Analysis%20of%20Feature%20Visibility%20in%20Non-Line-of-Sight%20Measurements_seb.html" target="_blank"> [Website]</a><br>
+				On the effect of BRDFs on Phasor Field NLOS imaging, <strong><i>ICASSP</i></strong>. <a href="https://xiaochunliu.github.io/" target="_blank"> [Website]</a><br>
+				A dataset for benchmarking time-resolved non-line-of-sight imaging, <strong><i>SIGGRAPH</i></strong>. <a href="http://graphics.unizar.es/nlos_dataset.html" target="_blank"> [Website]</a><br>
+				Phasor field waves: A Huygens-like light transport model for non-line-of-sight imaging applications, <strong><i>Optics Express</i></strong>. <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-27-20-29380" target="_blank"> [Paper]</a><br>
+				Paraxial theory of phasor-field imaging, <strong><i>Optics Express</i></strong>. <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-27-13-18016" target="_blank"> [Paper]</a><br>
+				Phasor field waves: a mathematical treatment, <strong><i>Optics Express</i></strong>. <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-27-20-27500" target="_blank"> [Paper]</a><br>
+				Non-line-of-sight-imaging using dynamic relay surfaces, <strong><i>Optics Express</i></strong>. <a href="https://www.osapublishing.org/oe/abstract.cfm?uri=oe-28-4-5331" target="_blank"> [Paper]</a><br>
+
+			</left></td></tr></tbody>
+		</table> 
+
+		<!-- Cite back to author  -->
+        <br>
+        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+          	<tr><td><br><p align="right" style="color:Gray;"><font size="2">
+            	Project Template from <a href="https://richzhang.github.io/colorization/" target="_blank">here</a></font></p> <br></td>
+        	</tr>
+        	<tr>
+        		<p align="right" style="color:Gray;">
+          		<a href="https://info.flagcounter.com/OOlb"><img src="https://s11.flagcounter.com/count2/OOlb/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+        	</tr>
+      	</table>
+
+
+</body></html>
