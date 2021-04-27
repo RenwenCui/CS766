@@ -459,7 +459,8 @@
 		  
 		<table align="center"><td width="1000px"><span style="font-size:18px">
 	  		<p> In this part of the project, we explored video denoising using motion compensated multi-frame averaging method on video corrupted by four different noise models: Gaussian noise with mean = 0 and SD = 50, 100, and 150. Poisson noise 
-			    with assumed maximum of 10 photons in the foreground (tumor) and 4 photons in the background.
+			    with assumed maximum of 10 photons in the foreground (tumor) and 4 photons in the background. For Poisson noise, because we assumed uniform “ground truth” photons for the background (i.e. 4 photons at each pixel in the background), 
+			    the final denoised image is obtained by subtracting off the background from the result of multi-frame averaging.
 	  	        </p>
 			
 			<table align="center" width="600px"><tbody><tr>
@@ -503,7 +504,10 @@
 		
 	
 		  
+		<br>
 		  
+		<center><h4>Result Two: Deep Neural Network based Image Segmentation</h4></center>
+		<br>  
 		  
 		  
 		  
