@@ -338,7 +338,10 @@
 	  <br><hr>
 
 	  <div id = "Motivation">
+		<table align="center"><td width="1000px">
 	  	<h2>Motivation</h2>
+		</td></table>
+			
 	  	<table align="center"><td width="1000px"><span style="font-size:18px"><p>
 	  		In fluorescent imaging it is important that one can capture a clear video of a moving fluorescent object, such as some biological tissue. However, in the case where the fluorescent signal from an object is weak, 
 			conventional cameras could have a hard time getting enough light signal to construct an image of that object given the short amount of time allowed for exposure at each frame. Single Photon Avalanche Detectors 
@@ -371,14 +374,21 @@
 	  	<hr>
 
 	  <div id = "Approach">
-		<h2>Approach</h2>
+		<table align="center"><td width="1000px">
+	  	<h2>Approach</h2>
+		</td></table>
+		  
 		<table align="center"><td width="1000px"><span style="font-size:18px"><p>
 	  		Using the videos captured from both sensors (SPAD and CMOS), we proposed to denoise the fluorescent video through two methods: multiple frames averaging with optical flow motion compensation, and deep neural network based image 
 			segmentation.
 	  	</p></span></td>
   		</table>
 		
-		<h4>1. Multiple Frames Averaging with Optical Flow Motion Compensation</h4>
+		  
+		<table align="center"><td width="1000px">
+	  	<h4>1. Multiple Frames Averaging with Optical Flow Motion Compensation</h4>
+		</td></table>
+		
 		<table align="center"><td width="1000px"><span style="font-size:18px"><p>
 	  		The main idea here is to denoise frame n of a video using the temporal averaging method. Specially, we can warp and align frames 1 to n – 1 with frame n, sum up the n frames and take the average. Based on the law of large numbers, 
 			gaussian noise (mean = 0) should be removed after the averaging over a large enough number of frames. We warp each frame in the video to align it with its next frame along the motion trajectory. The motion trajectory is obtained 
@@ -464,8 +474,10 @@
   		</table>
 		   
 		<br>
-		  
-		<center><h4>2. Deep Neural Network based Image Segmentation</h4></center>
+		   
+		<table align="center"><td width="1000px">
+	  	<h4>2. Deep Neural Network based Image Segmentation</h4>
+		</td></table>
 		<br>
 	  </div>  
 	  
@@ -474,10 +486,15 @@
 
 	  <div id = "Result">
 		  
- 		<h2>Result</h2>
+		<table align="center"><td width="1000px">
+	  	<h2>Result</h2>
+		</td></table>
 
 		<!-- Main Result Here -->
-                <h4>1. Multiple Frames Averaging with Optical Flow Motion Compensation</h4>
+		<table align="center"><td width="1000px">
+	  	<h4>1. Multiple Frames Averaging with Optical Flow Motion Compensation</h4>
+		</td></table>
+           
 		  
 		<table align="center"><td width="1000px"><span style="font-size:18px">
 	  		<p> In this part of the project, we explored video denoising using motion compensated multi-frame averaging method on video corrupted by four different noise models: Gaussian noise with mean = 0 and SD = 50, 100, and 150. Poisson noise 
@@ -536,8 +553,10 @@
 		  
 		<br>
 		  
-		  
-		<h4>2. Deep Neural Network based Image Segmentation</h4>
+		<table align="center"><td width="1000px">
+	  	<h4>2. Deep Neural Network based Image Segmentation</h4>
+		</td></table> 
+		
 		<br>  
 		  
 		  
@@ -553,8 +572,10 @@
 	  <hr>
         
 	<div id = "Reference">
-	  	<center><h2>Reference</h2></center>
 	  	
+	  	<table align="center"><td width="1000px">
+	  	<h2>Reference</h2>
+		</td></table>
 		  
 	</div>
 
