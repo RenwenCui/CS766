@@ -356,7 +356,7 @@
 			</td>
                 </tr></tbody>
 			
-		<center><caption style="font-size:16px"><b>Figure 1.</b> Fluorescent Tumor Video Denoising.</caption></center>
+		<center><figcaption style="font-size:16px"><b>Figure 1.</b> Fluorescent Tumor Video Denoising.</figcaptioncaption></center>
 		<br>
 		  
 		<table align="center"><td width="1000px"><span style="font-size:18px"><p>
@@ -403,8 +403,11 @@
 					<span style="font-size:16px"></span>
 			        </td>
 			</tr></tbody>
-  		        </table><br>
-				
+  		        </table>
+			
+			<center><figcaption style="font-size:16px"><b>Figure 2.</b> Multiple still frames denoising.</figcaptioncaption></center>
+			<br>
+			
 			<p><b><u>2. Denoising a video with forward optical flow motion compensation.</u></b> We move on to denoise a normal video where the objects in the video are moving. To denoise dark frame n of a video, the first step is to find the 
 				motion trajectory between each two consecutive dark frames from frame 1 to frame n by calculating optical flow between each two consecutive white-light frames captured by the CMOS camera because the white-light frames are 
 				noise-less, and object motions are the same in white light frames and dark frames.
@@ -419,6 +422,9 @@
 			        </td>
 			</tr></tbody>
   		        </table>
+			
+			<center><figcaption style="font-size:16px"><b>Figure 3.</b> Denoising a video using forward optical flow motion compensation.</figcaptioncaption></center>
+			
 			<p> However, because the tweezers in the video acts like a moving occluder, optical flow fails on the pixels that were not occluded in frame n – 2 but got occluded in frame n – 1, or pixels that were occluded in frame n – 2 but not 
 				occluded anymore in frame n – 1 (i.e., a sudden change of brightness). These pixels cannot be properly aligned and the averaging at these locations must be reset. Therefore, these locations in the image become noisy when the 
 				noisy dark frame n gets added in. We propose the backward flow denoising method to overcome the occlusion issue presented in optical flow.
@@ -433,7 +439,11 @@
 					<span style="font-size:16px"></span>
 			        </td>
 			</tr></tbody>
-  		        </table><br>
+  		        </table>
+			
+			<center><figcaption style="font-size:16px"><b>Figure 4.</b> Denoising a video using backward optical flow motion compensation.</figcaptioncaption></center>
+			
+			<br>
 				
 			<p><b><u>4. Denoising a video with combined forward flow and backward flow.</u></b> We can see that although the backward flow also failed to remove all the noise in dark frame n, comparing the two denoised dark frame n from forward and 
 				backward flow, the noise does not necessarily appear at the same locations. This is because pixels of frame n whose optical flow failed in frame n -1 of the forward flow does not necessarily fail in frame n + 1 of the backward flow. 
@@ -445,7 +455,11 @@
 					<span style="font-size:16px"></span>
 			        </td>
 			</tr></tbody>
-  		        </table><br>
+  		        </table>
+			
+			<center><figcaption style="font-size:16px"><b>Figure 5.</b> Denoising a video using combined forward flow and backward flow motion compensation.</figcaptioncaption></center>
+			
+			<br>
 			
 			</span></td>
   		</table>
@@ -488,7 +502,11 @@
 					<span style="font-size:16px"></span>
 			        </td>
 			</tr></tbody>
-  		        </table><br>
+  		        </table>
+			
+			<center><figcaption style="font-size:16px"><b>Figure 6.</b> <b><i>Left.</b></i> Denoising a video with Gaussian noise (mean = 0 and SD = 100). <b><i>Right.</b></i> Denoising a video with Possion noise (foreground = 10 photons at peak, background = 4 photons uniformly distributed).</figcaptioncaption></center>
+			
+			<br>
 			
 			<p> From the output denoised video frames and PSNR plots shown in <b>figure 6</b>, we observed significant denoising effect using the motion compensated multi-frame averaging method on both Gaussian and Poisson noise corrupted florescent videos. Also, Both the output 
 				denoised video and the PSNR plots show that combining the forward flow and backward flow is capable of removing some of the remaining noise from failed alignments due to optical flow failures (presence of occlusion, sudden change in brightness, etc.), 
@@ -503,6 +521,7 @@
 			</tr></tbody>
   		        </table>
 			
+			<center><figcaption style="font-size:16px"><b>Figure 6.</b> Multi-frame averaging result (Gaussian noise, mean = 0, SD = 50, 100, 150).</figcaptioncaption></center>
 			<br>
 			
 			<table align="center" width="600px"><tbody><tr>
@@ -513,12 +532,13 @@
 			</tr></tbody>
   		        </table>
 			
+			<center><figcaption style="font-size:16px"><b>Figure 7.</b> Multi-frame averaging result (Poisson, foreground = 10 photons at peak, background = 4 photons uniformly distributed).</figcaptioncaption></center>
+			<br>
 			</span></td>
   		</table>
-		
-	
 		  
 		<br>
+		  
 		  
 		<center><h4>Result Two: Deep Neural Network based Image Segmentation</h4></center>
 		<br>  
