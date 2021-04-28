@@ -355,7 +355,7 @@
 				<span style="font-size:16px"></span>
 			</td>
                 </tr></tbody>
-			
+		</table>
 		<center><figcaption style="font-size:16px"><b>Figure 1.</b> Fluorescent Tumor Video Denoising.</figcaptioncaption></center>
 		<br>
 		  
@@ -368,7 +368,7 @@
 		  
 	  </div>
 		  
-	  	<br><hr>
+	  	<hr>
 
 	  <div id = "Approach">
 		<center><h2>Approach</h2></center>
@@ -429,7 +429,8 @@
 				occluded anymore in frame n – 1 (i.e., a sudden change of brightness). These pixels cannot be properly aligned and the averaging at these locations must be reset. Therefore, these locations in the image become noisy when the 
 				noisy dark frame n gets added in. We propose the backward flow denoising method to overcome the occlusion issue presented in optical flow.
 			</p>
-				
+			
+			<br>
 		        <p><b><u>3. Denoising a video with backward optical flow motion compensation.</u></b> Using the same analogy as the forward flow, we can also denoise dark frame n by aligning and averaging dark frame 1827 (the last frame of the video) 
 				to dark frame n (i.e., playing the video backwards). See <b>figure 5</b>. Because object motions are determined based on video being played backward, so we can call this approach denoising using the backward flow.
 			</p>
@@ -443,8 +444,7 @@
 			
 			<center><figcaption style="font-size:16px"><b>Figure 4.</b> Denoising a video using backward optical flow motion compensation.</figcaptioncaption></center>
 			
-			<br>
-				
+			<br>	
 			<p><b><u>4. Denoising a video with combined forward flow and backward flow.</u></b> We can see that although the backward flow also failed to remove all the noise in dark frame n, comparing the two denoised dark frame n from forward and 
 				backward flow, the noise does not necessarily appear at the same locations. This is because pixels of frame n whose optical flow failed in frame n -1 of the forward flow does not necessarily fail in frame n + 1 of the backward flow. 
 				Therefore, we can further lower the noise level in dark frame n by combining the results from forward flow and backward flow.
@@ -460,12 +460,9 @@
 			<center><figcaption style="font-size:16px"><b>Figure 5.</b> Denoising a video using combined forward flow and backward flow motion compensation.</figcaptioncaption></center>
 			
 			<br>
-			
 			</span></td>
   		</table>
-		  
-	
-		  
+		   
 		<br>
 		  
 		<center><h4>Approach Two: Deep Neural Network based Image Segmentation</h4></center>
@@ -521,7 +518,7 @@
 			</tr></tbody>
   		        </table>
 			
-			<center><figcaption style="font-size:16px"><b>Figure 6.</b> Multi-frame averaging result (Gaussian noise, mean = 0, SD = 50, 100, 150).</figcaptioncaption></center>
+			<center><figcaption style="font-size:16px"><b>Figure 7.</b> Multi-frame averaging result (Gaussian noise, mean = 0, SD = 50, 100, 150).</figcaptioncaption></center>
 			<br>
 			
 			<table align="center" width="600px"><tbody><tr>
@@ -532,7 +529,7 @@
 			</tr></tbody>
   		        </table>
 			
-			<center><figcaption style="font-size:16px"><b>Figure 7.</b> Multi-frame averaging result (Poisson, foreground = 10 photons at peak, background = 4 photons uniformly distributed).</figcaptioncaption></center>
+			<center><figcaption style="font-size:16px"><b>Figure 8.</b> Multi-frame averaging result (Poisson, foreground = 10 photons at peak, background = 4 photons uniformly distributed).</figcaptioncaption></center>
 			<br>
 			</span></td>
   		</table>
