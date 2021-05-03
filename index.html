@@ -427,7 +427,7 @@
 						with the denoising problem. In this project, we can simulate the video of a tumor being cut by a
 						surgeon taken by a two-camera
 						imaging system described above based on the video taken by a conventional camera. Our goal is to
-						denoise biomedical fluorescent videos captured by a SPAD camera in the dark (dark frames) with
+						denoise biomedical fluorescent videos captured by a SPAD camera (fluorescent frames) with
 						the help of its
 						corresponding video co-captured by a conventional CMOS camera under normal luminescence
 						(white-light frames).
@@ -517,16 +517,16 @@
 
 					<p><b><u>1.2 Denoising a video with forward optical flow motion compensation</u></b></p>
 					<p></p>
-					We move on todenoise a normal video where the objects in the video are moving. To denoise dark frame
+					We move on to denoise a normal video where the objects in the video are moving. To denoise fluorescent frame
 					n of a video, the first step is to find the motion trajectory between each two consecutive dark
 					frames from frame 1 to frame n by
 					calculating optical flow between each two consecutive white-light frames captured by the CMOS camera
 					because the white-light frames are
-					noise-less, and object motions are the same in white light frames and dark frames.
+					noise-less, and object motions are the same in white light frames and fluorescent frames.
 					</p>
 
-					<p> Next, dark frames 1 to n – 1 are warped based on the motion trajectory to get aligned with dark
-						frame n. The aligned dark frames are then summed up and averaged to get the final denoised dark
+					<p> Next, fluorescent frames 1 to n – 1 are warped based on the motion trajectory to get aligned with fluorescent
+						frame n. The aligned fluorescent frames are then summed up and averaged to get the final denoised fluorescent
 						frame n. See <b>figure 3</b>. The video
 						has a total of 1827 frames so n < 1827. Because object motions are determined based on video
 							being played forward, so we can call this approach denoising using the forward flow. </p>
@@ -560,9 +560,9 @@
 							<br>
 							<p><b><u>1.3 Denoising a video with backward optical flow motion compensation</u></b></p>
 							<p> Using
-								the same analogy as the forward flow, we can also denoise dark frame n by aligning and
-								averaging dark frame 1827 (the last frame of the video)
-								to dark frame n (i.e., playing the video backwards). See <b>figure 5</b>. Because object
+								the same analogy as the forward flow, we can also denoise fluorescent frame n by aligning and
+								averaging fluorescent frame 1827 (the last frame of the video)
+								to fluorescent frame n (i.e., playing the video backwards). See <b>figure 5</b>. Because object
 								motions are determined based on video being played backward, so we can call this
 								approach denoising using the backward flow.
 							</p>
@@ -586,12 +586,12 @@
 							<br>
 							<p><b><u>1.4 Denoising a video with combined forward flow and backward flow</u></b></p>
 							<p>We can
-								see that although the backward flow also failed to remove all the noise in dark frame n,
-								comparing the two denoised dark frame n from forward and
+								see that although the backward flow also failed to remove all the noise in fluorescent frame n,
+								comparing the two denoised fluorescent frame n from forward and
 								backward flow, the noise does not necessarily appear at the same locations. This is
 								because pixels of frame n whose optical flow failed in frame n -1 of the forward flow
 								does not necessarily fail in frame n + 1 of the backward flow.
-								Therefore, we can further lower the noise level in dark frame n by combining the results
+								Therefore, we can further lower the noise level in fluorescent frame n by combining the results
 								from forward flow and backward flow.
 							</p>
 
@@ -812,7 +812,7 @@
 
 					<br>
 
-					<p> From the output denoised video frames and PSNR plots shown in <b>figure 6</b>, we observed
+					<span style="font-size:18px"><p> From the output denoised video frames and PSNR plots shown in <b>figure 6</b>, we observed
 						significant denoising effect using the motion compensated multi-frame averaging method on both
 						Gaussian and Poisson noise corrupted florescent videos. Also, Both the output
 						denoised video and the PSNR plots show that combining the forward flow and backward flow is
@@ -821,7 +821,7 @@
 						and further improve the output video quality. The PSNR plot of the video denoised by combined
 						forward and backward flow method stays constantly above that denoised by the forward flow only
 						method.
-					</p>
+					</p></span>
 
 					<table align="center" width="600px">
 						<tbody>
@@ -916,6 +916,8 @@
 							(c) PSNR plot of Vid_2 before and after denoising with CNN.
 							</figcaptioncaption>
 					</left>
+
+                                        <span style="font-size:18px">
 					<p><b><u>2.2 Comparison of denoising results on fluorescent frames with Gaussian noise σ=50, 100,
 								150</u></b></p>
 					<p>
@@ -991,6 +993,7 @@
 							temporal information provided
 							</figcaptioncaption>
 					</left>
+                                        </span>
 
 
 		</table>
