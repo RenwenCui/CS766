@@ -416,7 +416,7 @@
 			</tbody>
 		</table>
 		<center>
-			<figcaption style="font-size:16px"><b>Figure 1.</b> Fluorescent Tumor Video Denoising.</figcaptioncaption>
+			<figcaption style="font-size:16px"><b>Figure 1.</b> Simulated white-light frames and florescent frames.</figcaptioncaption>
 		</center>
 		<br>
 
@@ -518,7 +518,7 @@
 					<p><b><u>1.2 Denoising a video with forward optical flow motion compensation</u></b></p>
 					<p></p>
 					We move on to denoise a normal video where the objects in the video are moving. To denoise fluorescent frame
-					n of a video, the first step is to find the motion trajectory between each two consecutive dark
+					n of a video, the first step is to find the motion trajectory between each two consecutive fluorescent
 					frames from frame 1 to frame n by
 					calculating optical flow between each two consecutive white-light frames captured by the CMOS camera
 					because the white-light frames are
@@ -553,7 +553,7 @@
 								occluded anymore in frame n – 1 (i.e., a sudden change of brightness). These pixels
 								cannot be properly aligned and the averaging at these locations must be reset.
 								Therefore, these locations in the image become noisy when the
-								noisy dark frame n gets added in. We propose the backward flow denoising method to
+								noisy fluorescent frame n gets added in. We propose the backward flow denoising method to
 								overcome the occlusion issue presented in optical flow.
 							</p>
 
