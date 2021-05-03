@@ -869,10 +869,10 @@
 		<table align="center">
 			<td width="1000px"><span style="font-size:18px">
 					<p><b><u>2.1 Denoising result on fluorescent frame with Gaussian noise σ=100.</u></b></p>
-					<p><b>Figure 9a</b> shows the examples of denoised fluorescent frames from Vid_1 and Vid_2
+					<p><b>Figure 11a</b> shows the examples of denoised fluorescent frames from Vid_1 and Vid_2
 						originally
 						corrupted with gaussian
-						noise σ=100. <b>figure 9b and 9c</b> shows the PSNR curves of the fluorescent videos before and
+						noise σ=100. <b>Figure 11b and 11c</b> shows the PSNR curves of the fluorescent videos before and
 						after
 						denoising. For both Vid_1
 						and Vid_2, we can see that the network successfully removed pretty much all the noise in the
@@ -883,8 +883,8 @@
 						For comparison, we also denoised Vid_1 using BM3D. BM3D is a state-of-art patch based image
 						denoising algorithm. The
 						denoised video from our neural network achieved better PSNR values compared to the denoised
-						video from BM3D (see <b>figure
-							9b</b>).
+						video from BM3D (see <b>Figure
+							11b</b>).
 					</p>
 					<p>
 						The shapes of the reconstructed fluorescence tissues are mostly correct. The boundaries of the
@@ -906,7 +906,7 @@
 						</tbody>
 					</table>
 					<left>
-						<figcaption style="font-size:16px"><b>Figure 9.</b> Evaluation of the CNN on two different
+						<figcaption style="font-size:16px"><b>Figure 11.</b> Evaluation of the CNN on two different
 							florescent videos (Vid_1 ad Vid_2). (a) Sample input noisy frames and output
 							denoised frames of Vid_1 and Vid_2. (b) PSNR plot of Vid_1 before and after denoising using
 							both CNN and BM3D algorithm.
@@ -914,14 +914,16 @@
 							</figcaptioncaption>
 					</left>
 
+                                        <br>
+
                                         <span style="font-size:18px">
 					<p><b><u>2.2 Comparison of denoising results on fluorescent frames with Gaussian noise σ=50, 100,
 								150</u></b></p>
 					<p>
 						We also evaluated the denoising effect of our CNN on both Vid_1 and Vid_2 corrupted by three
 						levels of gaussian noise
-						(σ=50, 100, 150). <b>Figure 10a</b> shows the results for denoising Vid_2 at three levels of
-						Gaussian noise, <b>figure 10b</b> shows the
+						(σ=50, 100, 150). <b>Figure 12a</b> shows the results for denoising Vid_2 at three levels of
+						Gaussian noise, <b>figure 12b</b> shows the
 						results for denoising Vid_1 with three levels of Gaussian noise.
 					</p>
 					<table align="center" width="600px">
@@ -940,10 +942,11 @@
 						</tbody>
 					</table>
 					<center>
-						<figcaption style="font-size:16px"><b>Figure 10.</b> Denoising result of the CNN on (a) Vid_1
+						<figcaption style="font-size:16px"><b>Figure 12.</b> Denoising result of the CNN on (a) Vid_1
 							and (b) Vid_2 corrupted by three levels of Gaussian noise (σ = 50, 100, 150)
 							</figcaptioncaption>
 					</center>
+					<br>
 					<p>
 						We can see that at all three noise levels, the network is able to remove pretty much all the
 						noise in the background and
@@ -953,18 +956,21 @@
 						frames get more blurred out
 						by noise. The boundary of the reconstructed tissue becomes more blurred out and more fine
 						features are lost. This
-						phenomenon is more pronounced in <b>figure 10a</b> as the tissue in mouse_video_2 has more
+						phenomenon is more pronounced in <b>Figure 12a</b> as the tissue in mouse_video_2 has more
 						complex edges and more fine features.
 					</p>
+						
+					<br>
+						
 					<p><b><u>2.3 Denoising effect of CNN trained without temporal information</u></b></p>
 					<p>
 						In this part we trained the neural network without showing it the temporal information between
 						video frames by giving it
 						three copies of the same white-light frame n instead of consecutive frames n-1, n, and n+1 at
 						the input. The result is
-						shown in <b>figure 11</b>. We can see both from the sample output of the denoised frame shown in
-						<b>figure 11a</b> and the PSNR plot
-						shown in <b>figure 11b</b> that the outcome of training the neural network with and without the
+						shown in <b>Figure 13</b>. We can see both from the sample output of the denoised frame shown in
+						<b>Figure 13a</b> and the PSNR plot
+						shown in <b>Figure 13b</b> that the outcome of training the neural network with and without the
 						temporal information is very
 						similar. In other words, the neural network most likely could not infer the temporal information
 						from the white light
@@ -982,7 +988,7 @@
 						</tbody>
 					</table>
 					<left>
-						<figcaption style="font-size:16px"><b>Figure 11.</b> Evaluation of CNN trained without providing
+						<figcaption style="font-size:16px"><b>Figure 13.</b> Evaluation of CNN trained without providing
 							temporal information of the video (a) comparison of the sample output frames
 							from CNN trained with and without temporal information. (b) Comparison of the PSNR curves
 							for a florescent video
