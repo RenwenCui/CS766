@@ -387,20 +387,17 @@
 		<table align="center">
 			<td width="1000px"><span style="font-size:18px">
 					<p>
-						In fluorescent imaging it is important that one can capture a clear video of a moving
-						fluorescent object, such as some biological tissue. However, in the case where the fluorescent
-						signal from an object is weak,
-						conventional cameras could have a hard time getting enough light signal to construct an image of
-						that object given the short amount of time allowed for exposure at each frame. Single Photon
-						Avalanche Detectors
-						(SPADs) are ultra-sensitive light sensors that can detect a single photon. SPAD cameras do not
-						require long exposure time to pick up a weak light signal, so they are the ideal tool for
-						imaging under low light conditions.
-						However, when the intensity of the light signal coming from our object of interest is so weak
-						that it is not much higher than the background noise picked up by the SPAD sensor, it would be
-						difficult to identify the
-						fluorescent object in the noisy frame. Therefore, denoising becomes a critical step to improve
-						the signal to noise ratio and obtain clean SPAD video frames.
+						In fluorescent imaging it is important that one can capture a clear video of a moving fluorescent 
+						object, such as some biological tissue. However, in the case where the fluorescent signal from an 
+						object is weak, conventional cameras could have a hard time getting enough light signal to construct 
+						an image of that object given the short amount of time allowed for exposure at each frame. Single 
+						Photon Avalanche Detectors (SPADs) are ultra-sensitive light sensors that can detect a single photon. 
+						SPAD cameras do not require long exposure time to pick up a weak light signal, so they are the ideal 
+						tool for imaging under low light conditions. However, when the intensity of the light signal coming 
+						from our object of interest is so weak that it is not much higher than the background noise picked up 
+						by the SPAD sensor, it would be difficult to identify the fluorescent object in the noisy frame. 
+						Therefore, denoising becomes a critical post processing step to improve the signal to noise ratio and 
+						obtain clean SPAD video frames. 
 					</p>
 				</span></td>
 		</table><br>
@@ -488,7 +485,7 @@
 						object. The video has 25 frames, all frames are the same so they can be added up directly
 						without
 						alignmet. Random gaussian noise (mean = 0, sd = 1) is applied to each frame and then denoised
-						using the multi-frame averaging method. As shown in <b>figure 1</b>, the noise is removed in the
+						using the multi-frame averaging method. As shown in <b>Figure 2</b>, the noise is removed in the
 						final frame.
 					</p>
 
@@ -527,7 +524,7 @@
 
 					<p> Next, fluorescent frames 1 to n – 1 are warped based on the motion trajectory to get aligned with fluorescent
 						frame n. The aligned fluorescent frames are then summed up and averaged to get the final denoised fluorescent
-						frame n. See <b>figure 3</b>. The video
+						frame n. See <b>Figure 3</b>. The video
 						has a total of 1827 frames so n < 1827. Because object motions are determined based on video
 							being played forward, so we can call this approach denoising using the forward flow. </p>
 							<table align="center" width="600px">
@@ -562,7 +559,7 @@
 							<p> Using
 								the same analogy as the forward flow, we can also denoise fluorescent frame n by aligning and
 								averaging fluorescent frame 1827 (the last frame of the video)
-								to fluorescent frame n (i.e., playing the video backwards). See <b>figure 5</b>. Because object
+								to fluorescent frame n (i.e., playing the video backwards). See <b>Figure 4</b>. Because object
 								motions are determined based on video being played backward, so we can call this
 								approach denoising using the backward flow.
 							</p>
@@ -592,7 +589,7 @@
 								because pixels of frame n whose optical flow failed in frame n -1 of the forward flow
 								does not necessarily fail in frame n + 1 of the backward flow.
 								Therefore, we can further lower the noise level in fluorescent frame n by combining the results
-								from forward flow and backward flow.
+								from forward flow and backward flow, as shown in figure 5.
 							</p>
 
 
@@ -626,7 +623,7 @@
 					<p><b><u>2.1 CNN Architecture.</u></b></p>
 					<p>In this project we use the CNN architecture proposed by Chen
 						et al. <b>[4]</b> for our dual-channel video denoising task. Chen
-						et al. originally used this network for depth-sensing applications. As shown in <b>figure 6</b>
+						et al. originally used this network for depth-sensing applications. As shown in <b>Figure 6</b>
 						the network has an
 						encoder-decoder architecture with skip connections. Each block in of the neural network
 						architecture besides the first
@@ -730,7 +727,7 @@
 					</table>
 
 					<center>
-						<figcaption style="font-size:16px"><b>Figure 6.</b> <b><i>Vid_1</b></i> Last 625 frames in
+						<figcaption style="font-size:16px"><b>Figure 7.</b> <b><i>Vid_1</b></i> Last 625 frames in
 							mouse_video_1. <b><i>Vid_2</b></i> First 625 frames form mouse_video_2.
 							</figcaptioncaption>
 					</center>
@@ -775,7 +772,7 @@
 						averaging method on video corrupted by four different noise models: Gaussian noise with mean = 0
 						and SD = 50, 100, and 150. Poisson noise
 						with assumed maximum of 10 photons in the foreground (tumor) and 4 photons in the background.
-						The results are shown in <b>figure 5</b>. For Poisson noise, because we assumed uniform “ground
+						The results are shown in <b>Figure 8</b>. For Poisson noise, because we assumed uniform “ground
 						truth” photons for the background (i.e. 4 photons at each pixel in the background),
 						the final denoised image is obtained by subtracting off the background from the result of
 						multi-frame averaging.
@@ -804,7 +801,7 @@
 					</table>
 
 					<left>
-						<figcaption style="font-size:16px"><b>Figure 6.</b> <b><i>Left.</b></i> Denoising a video with
+						<figcaption style="font-size:16px"><b>Figure 8.</b> <b><i>Left.</b></i> Denoising a video with
 							Gaussian noise (mean = 0 and SD = 100). <b><i>Right.</b></i> Denoising a video with Possion
 							noise (foreground = 10 photons at peak, background = 4 photons uniformly distributed).
 							</figcaptioncaption>
@@ -812,7 +809,7 @@
 
 					<br>
 
-					<span style="font-size:18px"><p> From the output denoised video frames and PSNR plots shown in <b>figure 6</b>, we observed
+					<span style="font-size:18px"><p> From the output denoised video frames and PSNR plots shown in <b>Figure 9</b> and <b>Figure 10</b>, we observed
 						significant denoising effect using the motion compensated multi-frame averaging method on both
 						Gaussian and Poisson noise corrupted florescent videos. Also, Both the output
 						denoised video and the PSNR plots show that combining the forward flow and backward flow is
@@ -836,7 +833,7 @@
 					</table>
 
 					<center>
-						<figcaption style="font-size:16px"><b>Figure 7.</b> Multi-frame averaging result (Gaussian
+						<figcaption style="font-size:16px"><b>Figure 9.</b> Multi-frame averaging result (Gaussian
 							noise, mean = 0, SD = 50, 100, 150).</figcaptioncaption>
 					</center>
 					<br>
@@ -854,7 +851,7 @@
 					</table>
 
 					<center>
-						<figcaption style="font-size:16px"><b>Figure 8.</b> Multi-frame averaging result (Poisson,
+						<figcaption style="font-size:16px"><b>Figure 10.</b> Multi-frame averaging result (Poisson,
 							foreground = 10 photons at peak, background = 4 photons uniformly distributed).
 							</figcaptioncaption>
 					</center>
