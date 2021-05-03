@@ -448,8 +448,7 @@
 					<p>
 						Using the videos captured from both sensors (SPAD and CMOS), we proposed to denoise the
 						fluorescent video through two methods: multiple frames averaging with optical flow motion
-						compensation, and deep neural network based image
-						segmentation.
+						compensation, and deep neural network based video denoising.
 					</p>
 				</span></td>
 		</table><br>
@@ -465,12 +464,13 @@
 			<td width="1000px"><span style="font-size:18px">
 					<p>
 						The main idea here is to denoise frame n of a video using the temporal averaging method.
-						Specially, we can warp and align frames 1 to n – 1 with frame n, sum up the n frames and take
+						Specifically, we can warp and align frames 1 to n – 1 with frame n, sum up the n frames and take
 						the average. Based on the law of large numbers,
 						gaussian noise (mean = 0) should be removed after the averaging over a large enough number of
 						frames. We warp each frame in the video to align it with its next frame along the motion
 						trajectory. The motion trajectory is obtained
-						by calculating the optical flow between two consecutive frames.
+						by calculating the optical flow between two consecutive frames using the Gunner-Farneback optical
+						flow algorithm in OpenCV.
 					</p>
 				</span></td>
 		</table><br>
@@ -484,7 +484,7 @@
 						We tested the validity of noise removal using multi-frame averaging on a video of a still
 						object. The video has 25 frames, all frames are the same so they can be added up directly
 						without
-						alignmet. Random gaussian noise (mean = 0, sd = 1) is applied to each frame and then denoised
+						alignmet. Random gaussian noise (mean = 0, sd = 100) is applied to each frame and then denoised
 						using the multi-frame averaging method. As shown in <b>Figure 2</b>, the noise is removed in the
 						final frame.
 					</p>
@@ -633,7 +633,7 @@
 						white-light frames n-1, n,
 						n+1 and fluorescent frames (noisy fluorescent frame n, denoised fluorescent frame n-1) as input
 						and returns the denoised
-						fluorescent frame t.</p>
+						fluorescent frame n.</p>
 
 
 					<table align="center" width="600px">
@@ -681,7 +681,7 @@
 						frames n-1, n, n+1, noisy
 						fluorescent frame n, and denoised fluorescent frame n-1. The output is denoised fluorescent
 						frame n. The output is then
-						compared with the ground truth fluorescent frame t to calculate the loss. Standard pixel-wise L2
+						compared with the ground truth fluorescent frame n to calculate the loss. Standard pixel-wise L2
 						loss together with the
 						Adam optimizer is used for the training. The learning rate is set to 1e-6. The network is
 						trained for 100 epochs.
